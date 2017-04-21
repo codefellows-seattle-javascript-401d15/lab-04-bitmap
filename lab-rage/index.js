@@ -1,6 +1,6 @@
 'use strict';
 
-const readFile = require('./bit-headers.js');
+const readFile = require('./readFile.js');
 const transformFile = require('./transform.js');
 const exportFile = require('./export.js');
 
