@@ -6,6 +6,7 @@
 
 
 ##Math
+
 **Inverted Colors**
 
 Buffer{10, 40, 10, 0 ....}
