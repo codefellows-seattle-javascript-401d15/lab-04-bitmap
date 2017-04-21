@@ -1,7 +1,8 @@
 'use strict';
 
 const fs = require('fs');
-const bitmap = fs.readFileSync('../assets/bitmap.bmp'); //NOT SYNCH WE WANT ASYNCH
+const bitmap = fs.readFileSync('./assets/bitmap.bmp'); //NOT SYNCH WE WANT ASYNCH
+const transform = require(`${__dirname}/transform.js`);
 
 const bmpData = {};
 
@@ -16,3 +17,4 @@ function getHeaderData () {
 }
 
 module.exports.getHeaderData = getHeaderData;
+module.exports.bmpData = bmpData;

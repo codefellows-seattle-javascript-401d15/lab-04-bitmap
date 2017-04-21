@@ -1,14 +1,23 @@
 'use strict';
 
-//function to invert colors
-let invertColors = function (bitmap) {
-  for (var i = 0; i < bitmap; i++) {
-    bitmap[i] = 255 - bitmap[i];
-    console.log(bitmap[i]);
-  }
-  return bitmap;
-};
+const fs = require('fs');
+const bitmap = fs.readFileSync('./assets/bitmap.bmp'); //NOT SYNCH WE WANT ASYNCH
+const headers = require('./bit-headers.js')
 
+let colorArray = headers.bmpData.colorArray;
+
+//function to invert colors
+function invertColors(colorArray, start, end) {
+  console.log(`colorArray: ${colorArray}`);
+  for (var i = start; i < end; i+=4) {
+    colorArray[i] = 255 - colorArray[i];
+    console.log('here in for');
+  }
+  console.log('transform');
+  return colorArray;
+}
+
+module.exports.invertColors = invertColors;
 
 
 //function to greyscale colors
@@ -17,9 +26,3 @@ let invertColors = function (bitmap) {
 
 
 //function to RGB colors
-
-
-
-
-//export functions
-module.exports.invertColors = invertColors;
