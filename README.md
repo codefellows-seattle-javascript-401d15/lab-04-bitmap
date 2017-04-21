@@ -25,7 +25,7 @@ The wikipedia article found here [Bitmap Specification](https://en.wikipedia.org
 
 * Your project should have three transforms
   * Invert the colors (essentially subtract every color value from the max color value which is 255),
-  * Grayscale the colors, multiply each color value by a constant, just make sure your values don't go over 255.
+  * Grayscale the colors - Google it.
   * (red|green|blue)scale the colors, same as above but only multiply one of the colors.
 
 ## Bonus Points:
