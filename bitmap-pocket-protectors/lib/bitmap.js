@@ -1,5 +1,15 @@
 'use strict';
 
+
+// Require in the transformer module here when ready //
+const transformer = require('./transform.js');
+
+module.exports = exports = {};
+
+const Bitmap = function(buffer) {
+  
+}
+
 const fs = require('fs');
 const bitmap = fs.readFileSync(`${__dirname}/../data/bitmap.bmp`);
 const bmp = {};
@@ -33,3 +43,4 @@ for (var i = 0; i < bmp.colorPallet; i++) {
 }
 loadColors();
 console.log( 'ARRRAAAAYYYY ', bmp.palletArray);
+
