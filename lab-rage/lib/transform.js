@@ -22,4 +22,4 @@ let invertColors = function (bitmap) {
 
 
 //export functions
-exports.invertColors = invertColors;
+module.exports.invertColors = invertColors;
