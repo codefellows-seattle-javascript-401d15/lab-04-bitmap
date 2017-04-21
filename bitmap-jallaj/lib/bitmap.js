@@ -9,7 +9,7 @@ exports.bitmap = function(callback) {
 
     let bmpBuffer = {};
 
-    console.log(data);
+    // console.log(data);
     exports.spec = data.toString('utf-8', 0, 2);
 
     exports.size = data.readUInt32LE(2);
@@ -18,9 +18,27 @@ exports.bitmap = function(callback) {
     exports.headersize = data.readUInt32LE(14);
     exports.offset = data.readUInt32LE(10);
     exports.colorArray = data.slice(54, exports.offset);
+    console.log(exports.colorArray.readUInt8(5));
+    
 
+    for(var i = 0; i < exports.colorArray.length; i += 4) {
+      let arrayOfFours = [];
+      arrayOfFours.push(exports.colorArray[i]);
+      arrayOfFours.push(exports.colorArray[i+1]);
+      arrayOfFours.push(exports.colorArray[i+2]);
+      // console.log(arrayOfFours[0]);
+      arrayOfFours[0] += 25;
+      // console.log(arrayOfFours[0]); 
+    }
+    
+    // console.log(arrayOfFours);
+    
+    console.log('test');
+    
+    // console.dir(exports.colorArray.splice(0, 4));
+    
 
-    console.log(exports);
+    // console.log(exports);
     callback(exports);
   });
 };

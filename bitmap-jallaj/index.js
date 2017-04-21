@@ -7,6 +7,13 @@ bitmapModule.bitmap(function(exports){
 
   bufferColorArray.push(exports.colorArray);
   // console.log(exports, 'exports');
-  // console.log(exports.colorArray);
-  console.log(bufferColorArray);
+  // console.dir(exports.colorArray);
+
+  // console.log(bufferColorArray);
+  // console.log(bufferColorArray.toString('hex'));
+  const bufferString = Buffer.from(bufferColorArray);
+  // console.log(bufferString);
+  // console.dir(bufferColorArray.splice(0,4));
 });
+
+
