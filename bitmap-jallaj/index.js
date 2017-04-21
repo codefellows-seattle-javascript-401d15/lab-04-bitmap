@@ -1,6 +1,6 @@
 'use strict';
 
-const bitmapModule = require(`${__dirname}/lib/bitmap.js`);
+const bitmapModule = require(`${__dirname}/lib/readBitmap.js`);
 
 bitmapModule.bitmap(function(exports){
   let bufferColorArray = [];

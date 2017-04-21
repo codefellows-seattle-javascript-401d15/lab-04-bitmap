@@ -3,11 +3,11 @@
 const fs = require('fs');
 module.exports = exports = {};
 
-exports.bitmap = function(callback) {
-  fs.readFile(`${__dirname}/../assets/bitmap.bmp`, function(error, data) {
-    if (error) throw error
+const fileNames = [`${__dirname}/../assets/bitmap.bmp`, `${__dirname}/../assets/finger-print.bmp`, `${__dirname}/../assets/house.bmp`, `${__dirname}/../assets/non-palette-bitmap.bmp`];
 
-    let bmpBuffer = {};
+exports.readBitmap = function(callback) {
+  fs.readFile(fileNames[0], function(error, data) {
+    if (error) throw error;
 
     // console.log(data);
     exports.spec = data.toString('utf-8', 0, 2);
@@ -18,19 +18,8 @@ exports.bitmap = function(callback) {
     exports.headersize = data.readUInt32LE(14);
     exports.offset = data.readUInt32LE(10);
     exports.colorArray = data.slice(54, exports.offset);
-    console.log(exports.colorArray.readUInt8(5));
-    
-
-    for(var i = 0; i < exports.colorArray.length; i += 4) {
-      let arrayOfFours = [];
-      arrayOfFours.push(exports.colorArray[i]);
-      arrayOfFours.push(exports.colorArray[i+1]);
-      arrayOfFours.push(exports.colorArray[i+2]);
-      // console.log(arrayOfFours[0]);
-      arrayOfFours[0] += 25;
-      // console.log(arrayOfFours[0]); 
-    }
-    
+    // console.log(exports.colorArray.readUInt8(5));
+        
     // console.log(arrayOfFours);
     
     console.log('test');
