@@ -1,12 +1,13 @@
 'use strict';
 
 const fs = require('fs');
+const readBitmap = require('./readBitmap.js');
 module.exports = exports = {};
 
 const fileNames = [`${__dirname}/../assets/bitmap-new.bmp`, `${__dirname}/../assets/finger-print-new.bmp`, `${__dirname}/../assets/house-new.bmp`, `${__dirname}/../assets/non-palette-bitmap-new.bmp`];
 
 exports.writeBitmap = function(callback) {
-  fs.readFile(fileNames[0], function(error, data) {
+  fs.writeFile(fileNames[0], function(error) {
     if (error) throw error;
 
     // console.log(data);
@@ -18,6 +19,7 @@ exports.writeBitmap = function(callback) {
     exports.headersize = data.writeUInt32LE(14);
     exports.offset = data.writeUInt32LE(10);
     exports.colorArray = data.slice(54, exports.offset);
+
     // console.log(exports.colorArray.writeUInt8(5));
     callback(exports);
   });
