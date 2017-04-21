@@ -1,4 +1,7 @@
 'use strict';
 
-const fileHandler = require('./file-handler.js');
-const bitmapBuilder = require('./bitmap.js')
+const fileHandler = require('./lib/file-handler.js');
+const bitmapBuilder = require('./lib/bitmap.js');
+
+// Invoke readFromFile here
+fileHandler.readFromFile('bitmap.bmp', bitmapBuilder);
