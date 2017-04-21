@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 // const bitmap = fs.readFileSync(`${__dirname}/data/bitmap.bmp`);
-const bitmap = `${__dirname}/data/bitmap.bmp`;
+const bitmap = `${__dirname}/assets/bitmap.bmp`;
 
 // const bmp = {};
 //
@@ -25,23 +25,28 @@ function Bmp(data, name){
   this.height = data.readUInt32LE(22);
   this.offset = data.readUInt32LE(10);
   this.colorArray = data.slice(54, this.offset);
-  this.filePath = `${__dirname}/data/${this.name}.bmp`;
+  this.filePath = `${__dirname}/assets/${this.name}.bmp`;
   this.buff = data;
+  this.newColorArray = [];
   // bmp.colorTable = bitmap.slice(41, 44);
+}
+
+function inverter(imgObject){
+  for(let i = 0; i < imgObject.colorArray.length; i++) {
+    imgObject.newColorArray[i] = 255 - imgObject.colorArray[i];
+    imgObject.colorArray = imgObject.newColorArray;
+  }
 }
 
 fs.readFile(bitmap, function(err, data){
   if(err) throw err;
   console.log(data);
 
-  let newPic = new Bmp(data, 'wtfisthis');
+  var newPic = new Bmp(data, 'newpicpls');
   // let newData = data.toString('ascii');
 
-  for(var i = 0; i < newPic.colorArray.length; i++) {
-    var red = newPic.colorArray[i];
-    red = Math.floor(Math.random() * 255);
-  }
 
+  inverter(newPic);
   console.log(newPic);
 
   fs.writeFile(newPic.filePath, newPic.buff, function(err){
