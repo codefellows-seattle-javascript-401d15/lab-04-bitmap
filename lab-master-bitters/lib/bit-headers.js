@@ -3,7 +3,7 @@
 module.exports = exports = {};
 
 const fs = require('fs');
-const bitmap = fs.readFileSync(`${__dirname}/../assets/bmp-files/bitmap.bmp`);
+const bitmap = fs.readFile(`${__dirname}/../assets/bmp-files/bitmap.bmp`);
 const bmp = {};
 
 bmp.spec = bitmap.toString('utf-8',0,2);
