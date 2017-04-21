@@ -2,14 +2,14 @@
 
 module.exports = exports = {};
 
-//function to invert colors
-let invertColors = function (bitmap) {
-  for (var i = 0; i < bitmap; i++) {
-    bitmap[i] = 255 - bitmap[i];
-    console.log(bitmap[i]);
-  }
-  return bitmap;
-};
+// TODO: function to invert colors
+// let invertColors = bitmap => {
+//   for (var i = 0; i < bitmap; i++) {
+//     bitmap[i] = 255 - bitmap[i];
+//     console.log(bitmap[i]);
+//   }
+//   return bitmap;
+// };
 
 
 
@@ -26,13 +26,20 @@ exports.MonoChrome = buff => {
   this.colorArray = buff.slice(54,1078);
 };
 
-exports.GrayScale.prototype.monoChrome = () => {
-  
+exports.MonoChrome.prototype.monoChrome = () => {
+  let currentColor = [];
+  for (var i = 0; i < 1024; i += 4) {
+    currentColor = this.colorArray.slice(i, i + 4);
+    let currentColorAverage = ((currentColor[0] + currentColor[1] + currentColor[2])/3);
+    currentColor[0] = currentColorAverage;
+    currentColor[1] = currentColorAverage;
+    currentColor[2] = currentColorAverage;
+    currentColor[3] = 0;
+  }
 };
 
 
-
-//function to RGB colors
+// TODO: function to RGB colors
 
 
 

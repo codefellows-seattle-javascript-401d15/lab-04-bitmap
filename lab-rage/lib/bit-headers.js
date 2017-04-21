@@ -1,8 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-const bitmap = fs.readFileSync('../assets/bitmap.bmp'); //NOT SYNCH WE WANT ASYNCH
-
 const bmpData = {};
 
 function getHeaderData () {
