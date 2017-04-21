@@ -1,11 +1,13 @@
 'use strict';
 
 const fs = require('fs');
+const transform = require('./transform.js');
+const Buffer = require('buffer').Buffer;
 
 module.exports = exports = {};
 
 exports.read = function(){
-  fs.readFile(`${__dirname}/../../assets/finger-print.bmp`, function(err, data){
+  fs.readFile(`${__dirname}/../../assets/house.bmp`, function(err, data){
     if(err) throw err;
     let fingerData = data;
     exports.bmp = {};
@@ -14,9 +16,15 @@ exports.read = function(){
     exports.bmp.offset = fingerData.readUInt32LE(10);
     exports.bmp.width = fingerData.readUInt32LE(18);
     exports.bmp.height = fingerData.readUInt32LE(22);
-    exports.bmp.colors = fingerData.slice(54, exports.bmp.offset);
-    console.log(exports.bmp);
+    exports.bmp.colors = fingerData.slice(54, 62);
+    console.dir(exports.bmp);
+    // console.log('finger', fingerData);
+    // if (invert) transform.invert(exports.bmp.colors);
+    // if (gray) transform.gray(exporst.bmp.colors, number);
+    // if (scale) transform.scale(exports.bmp.colors, color, number);
+    fs.writeFile(`${__dirname}/../data/newbmp.bmp`, fingerData, err => {
+      if (err) throw err;
+    });
   });
 };
-exports.read();
 // 46 or 54 for color starting point
