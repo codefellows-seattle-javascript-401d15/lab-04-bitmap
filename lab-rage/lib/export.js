@@ -8,5 +8,4 @@ module.exports = function (path, buffData, callback) {
     console.log(` write : ${buffData.bmpImage.colorArray}`);
     callback(null, buffData);
   });
-
 };

@@ -4,6 +4,9 @@ const readFile = require('./lib/readFile.js');
 const transformFile = require('./lib/transform.js');
 const exportFile = require('./lib/export.js');
 
+let colorPicker = String(process.argv[2]).toLowerCase();
+let outputName = String(process.argv[3]);
+
 module.exports = exports = function() {
   return readFile('./assets/bitmap.bmp', function(err, bitmap) {
     console.log(`bitmap = ${bitmap}`);
@@ -14,16 +17,13 @@ module.exports = exports = function() {
       transformFile.monoChrome(bitmap);
     } else if (colorPicker == 'randomcolors') {
       transformFile.randomColors(bitmap);
+    } else {
+      console.log('You didn\'t pick a color you dummy');
     }
-    return exportFile('./assets/output.bmp', bitmap, function(err) {
+    return exportFile(`output/new_${colorPicker}_${outputName}.bmp`, bitmap, function(err) {
       if (err) throw new Error('failed to transform the image');
     });
   });
 };
-
-
-let colorPicker = String(process.argv[2]).toLowerCase();
-
-
 
 exports();

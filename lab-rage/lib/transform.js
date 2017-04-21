@@ -1,21 +1,12 @@
 'use strict';
 
-
-const fs = require('fs');
-const bitmap = fs.readFileSync('./assets/bitmap.bmp'); //NOT SYNCH WE WANT ASYNCH
-const headers = require('./bit-headers.js');
-
-
 //function to invert colors
 function invertColors(bitmap) {
   for (var i = 0; i < bitmap.colorArray.length; i += 4) {
     bitmap.colorArray[i] = 255 - bitmap.colorArray[i];
   }
-  console.log(bitmap);
   return bitmap;
 }
-
-
 
 //function to greyscale colors
 function monoChrome(bitmap, err) {
@@ -30,18 +21,16 @@ function monoChrome(bitmap, err) {
     currentColor[2] = currentColorAverage;
     currentColor[3] = 0;
   }
-
 }
 
-// function to RGB colors
+// function to randomize colors
 function randomColors(bitmap, err) {
   if(err) throw err;
   for (var i = 0; i < bitmap.colorArray.length; i += 4) {
     bitmap.colorArray[i] = Math.floor(Math.random() * 255);
   }
+  return bitmap;
 }
-
-
 
 //export functions
 module.exports.invertColors = invertColors;
