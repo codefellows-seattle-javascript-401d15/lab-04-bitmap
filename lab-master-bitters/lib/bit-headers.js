@@ -3,12 +3,75 @@
 module.exports = exports = {};
 
 const fs = require('fs');
-const bitmap = fs.readFile(`${__dirname}/../assets/bmp-files/bitmap.bmp`);
-const bmp = function(){
-  this.spec = bitmap.toString('utf-8',0,2);
-  this.size = bitmap.readUInt32LE(2);
-  this.width = bitmap.readUInt32LE(18);
-  this.height = bitmap.readUInt32LE(22);
-  this.offset = bitmap.slice(54, bmp.offset);
+
+const bmp = function(data){
+  this.spec = data.toString('utf-8',0,2);
+  this.size = data.readUInt32LE(2);
+  this.offset = data.readUInt32LE(10);
+  this.width = data.readUInt32LE(18);
+  this.height = data.readUInt32LE(22);
+
+  this.colorArray = data.slice(54, bmp.offset);
 };
-console.log(bmp);
+
+// let bitmapArray = [];
+
+fs.readFile(`${__dirname}/../assets/bmp-files/finger-print.bmp`, function(err, data){
+  if(err) throw err;
+  let picture = data;
+  let dataOne = new bmp (picture);
+
+  let colors = dataOne.colorArray.slice(0,12);
+  // console.log(dataOne);
+  // console.log(colors);
+  console.log(dataOne.colorArray);
+  invert(dataOne);
+  console.log(dataOne.colorArray);
+  // console.log(inverted);
+
+  fs.writeFile(`${__dirname}/../assets/bmp-files/newfinger.bmp`,picture,function(err){
+    if(err) throw err;
+    data = dataOne;
+    // console.log(data);
+  });
+});
+
+function invert(bmp){
+  for (let i =0; i < 1024; i += 4){
+    bmp.colorArray[i] = 255 - bmp.colorArray[i];
+  }
+  for (let i =1; i < 1024; i += 4){
+    bmp.colorArray[i] = 255 - bmp.colorArray[i];
+  }
+  for (let i =2; i < 1024; i += 4){
+    bmp.colorArray[i] = 255 - bmp.colorArray[i];
+  }
+}
+
+// function invert(bmp){
+//   console.log(bmp.colorArray);
+//   for (let i =0; i < bmp.colorArray.length; i += 4){
+//     for (let j =0; j < 3; j++){
+//       bmp.colorArray[i+j] = 255 - bmp.colorArray[i+j];
+//     }
+//   }
+//   console.log(bmp.colorArray);
+// }
+
+function greyScale(bmp){
+
+}
+
+// function monoChrome(bitmap, err) {
+//   if(err) throw new Error('Failed to change image to black and white');
+//
+//   let currentColor = [];
+//   for (var i = 0; i < 1024; i += 4) {
+//     currentColor = bitmap.colorArray.slice(i, i + 4);
+//     let currentColorAverage = ((currentColor[0] + currentColor[1] + currentColor[2])/3);
+//     currentColor[0] = currentColorAverage;
+//     currentColor[1] = currentColorAverage;
+//     currentColor[2] = currentColorAverage;
+//     currentColor[3] = 0;
+//   }
+// }
