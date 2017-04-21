@@ -33,11 +33,17 @@ function monoChrome(bitmap, err) {
 
 }
 
-// TODO: function to RGB colors
-
+// function to RGB colors
+function rgbColors(bitmap, err) {
+  if(err) throw err;
+  for (var i = 0; i < bitmap.colorArray.length; i += 4) {
+    bitmap.colorArray[i] = Math.floor(Math.random() * 255);
+  }
+}
 
 
 
 //export functions
 module.exports.invertColors = invertColors;
 module.exports.monoChrome = monoChrome;
+module.exports.rgbColors = rgbColors;
