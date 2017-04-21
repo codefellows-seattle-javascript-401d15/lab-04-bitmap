@@ -8,7 +8,10 @@ module.exports = exports = function() {
   return readFile('./assets/bitmap.bmp', function(err, bitmap) {
     console.log(`bitmap = ${bitmap}`);
     if(err) throw new Error('failed to read the bitmap');
-    return exportFile('./assets/output.bmp', bitmap, function(err) { //how to concat. diff files in one line
+    // transformFile.invertColors(bitmap);
+    // transformFile.monoChrome(bitmap);
+    transformFile.rgbColors(bitmap);
+    return exportFile('./assets/output.bmp', bitmap, function(err) {
       if(err) throw new Error('failed to transform the image');
     });
   });
