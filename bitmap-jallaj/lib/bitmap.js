@@ -6,6 +6,9 @@ module.exports = exports = {};
 exports.bitmap = function(callback) {
   fs.readFile(`${__dirname}/../assets/bitmap.bmp`, function(error, data) {
     if (error) throw error
+
+    let bmpBuffer = {};
+
     console.log(data);
     exports.spec = data.toString('utf-8', 0, 2);
 
