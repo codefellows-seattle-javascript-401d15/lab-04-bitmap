@@ -21,13 +21,11 @@ exports.convert = function(shaia) {
 exports.invert = function(shaia) {
   let newShaia = [];
   for (var i = 0; i < shaia.length; i++) {
-    let temp = {
-      blue: (255 - shaia[i].blue),
-      green: (255 - shaia[i].green),
-      red: (255 - shaia[i].red),
-      alpha: (255 - shaia[i].alpha),
-    };
-    newShaia.push(temp);
+    newShaia.push(255 - shaia[i].blue);
+    newShaia.push(255 - shaia[i].green);
+    newShaia.push(255 - shaia[i].red);
+    newShaia.push(255 - shaia[i].alpha);
   }
+    // newShaia.push(temp);
   return newShaia;
 };
