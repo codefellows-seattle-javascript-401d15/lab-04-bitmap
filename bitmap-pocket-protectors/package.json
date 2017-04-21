@@ -1,0 +1,30 @@
+{
+  "name": "bitmap-pocket-protectors",
+  "version": "0.0.1",
+  "description": "This is a group lab (Lab-04) where we create a module which will read and transform bitmaps using the FS module and Buffer class",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint ./lib",
+    "test": "mocha",
+    "build": "npm run lint && npm run test"
+  },
+  "keywords": [
+    "bitmap",
+    "transform",
+    "npm",
+    "pocket-protectors"
+  ],
+  "author": "Isak Swearingen, Maria Lee-Reed, Saul Green and Cameron Bacon",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.2.0"
+  }
+}
