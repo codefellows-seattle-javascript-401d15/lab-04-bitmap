@@ -1,15 +1,17 @@
-'use strict'
+'use strict';
 
-const fs = require('fs');
-const transform = require(`${__dirname}/lib/transform.js`);
-const headers = require('./lib/bit-headers.js');
+const readFile = require('./readFile.js');
+const transformFile = require('./transform.js');
+const exportFile = require('./export.js');
 
-// function to call headers function
-headers.getHeaderData();
+module.exports = exports = function() {
+  return readFile('./assets/bitmap.bmp', function(err, bitmap) {
+    if(err) throw new Error('failed to read the bitmap');
+    transformFile.transformData(bitmap);
+    return exportFile('./assets/output.bmp', bitmap, function(err) {
+      if(err) throw new Error('failed to transform the image');
+    });
+  });
+};
 
-// function to call transform function
-
-
-
-
-// function to write new BMP file after transform
+exports();
