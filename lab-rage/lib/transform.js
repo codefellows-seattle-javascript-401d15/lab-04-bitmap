@@ -15,17 +15,14 @@ const fs = require('fs');
 const bitmap = fs.readFileSync('./assets/bitmap.bmp'); //NOT SYNCH WE WANT ASYNCH
 const headers = require('./bit-headers.js');
 
-let colorArray = headers.bmpData.colorArray;
 
 //function to invert colors
-function invertColors(colorArray, start, end) {
-  console.log(`colorArray: ${colorArray}`);
-  for (var i = start; i < end; i+=4) {
-    colorArray[i] = 255 - colorArray[i];
-    console.log('here in for');
+function invertColors(bitmap) {
+  for (var i = 0; i < bitmap.colorArray.length; i += 4) {
+    bitmap.colorArray[i] = 255 - bitmap.colorArray[i];
   }
-  console.log('transform');
-  return colorArray;
+  console.log(bitmap);
+  return bitmap;
 }
 
 
