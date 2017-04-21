@@ -1,46 +1,28 @@
 'use strict';
 
-
 // Require in the transformer module here when ready //
 const transformer = require('./transform.js');
 
 module.exports = exports = {};
 
 const Bitmap = function(buffer) {
-  
-}
+  console.log(buffer);
+  this.spec = buffer.toString('utf-8', 0, 2);
+  this.size = buffer.readUInt32LE(2); // int
+  // this.width = buffer.readUInt32LE(18); // int
+  // this.height = buffer.readUInt32LE(20); // int
+  this.offset = buffer.readUInt32LE(10); // int
+  this.colorArray = buffer.slice(54, this.offset); // buffer array-like object
+  // this.colorPalette = buffer.readUInt32LE(46) / 4;
+  // this.paletteArray = [];
+  this.originalBuffer = buffer;
+};
 
-const fs = require('fs');
-const bitmap = fs.readFileSync(`${__dirname}/../data/bitmap.bmp`);
-const bmp = {};
-
-bmp.spec = bitmap.toString('utf-8', 0, 2);
-bmp.size = bitmap.readInt32LE(2);
-bmp.width = bitmap.readInt32LE(18);
-bmp.height = bitmap.readInt32LE(20);
-bmp.offset = bitmap.readInt32LE(10);
-bmp.colorArray = bitmap.slice(54, bmp.offset);
-bmp.colorPalette = bmp.colorArray / 4;
-bmp.paletteArray = [];
-
-console.log('FUUUUUCK!!! ', bmp.colorPalette);
-console.log(bmp.offset);
-console.log(bmp.height);
-console.log('colors ', bmp.colorArray);
-// console.log('toString data ', bmp.colorArray.toString('decimal', 0, 2));
-
-function loadColors(){
-for (var i = 0; i < bmp.colorPallet; i++) {
-  var offSet = bmp.colorPallet + i;
-  bmp.palletArray[i] = {
-    blue: bmp.readUInt8(offSet),
-    green: bmp.readUInt8(offSet + 1)
-  };
-
-
-
-}
-}
-loadColors();
-console.log( 'ARRRAAAAYYYY ', bmp.palletArray);
-
+module.exports = function(buffer, path, transform) {
+  var bitmap = new Bitmap(buffer);
+  // for (var i = 0; i < bitmap.colorArray.length; i++) {
+  //
+  //   bitmap.paletteArray.push(bitmap.colorArray[i]);
+  // }
+  transformer(path, transform, bitmap);
+};
