@@ -17,4 +17,4 @@ module.exports = exports = function() {
   });
 };
 
-exports()
+exports();
