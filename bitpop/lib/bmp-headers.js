@@ -7,7 +7,7 @@ const Buffer = require('buffer').Buffer;
 module.exports = exports = {};
 
 exports.read = function(){
-  fs.readFile(`${__dirname}/../../assets/house.bmp`, function(err, data){
+  fs.readFile(`${__dirname}/../../assets/finger-print.bmp`, function(err, data){
     if(err) throw err;
     let fingerData = data;
     exports.bmp = {};
@@ -16,10 +16,10 @@ exports.read = function(){
     exports.bmp.offset = fingerData.readUInt32LE(10);
     exports.bmp.width = fingerData.readUInt32LE(18);
     exports.bmp.height = fingerData.readUInt32LE(22);
-    exports.bmp.colors = fingerData.slice(54, 62);
+    exports.bmp.colors = fingerData.slice(54, exports.bmp.offset);
+    exports.bmp.pixels = transform.convert(exports.bmp.colors);
+    exports.bmp.inverted = transform.invert(exports.bmp.pixels);
     console.dir(exports.bmp);
-    // console.log('finger', fingerData);
-    // if (invert) transform.invert(exports.bmp.colors);
     // if (gray) transform.gray(exporst.bmp.colors, number);
     // if (scale) transform.scale(exports.bmp.colors, color, number);
     fs.writeFile(`${__dirname}/../data/newbmp.bmp`, fingerData, err => {
