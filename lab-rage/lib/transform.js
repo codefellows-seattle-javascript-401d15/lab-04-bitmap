@@ -15,8 +15,6 @@ function invertColors(bitmap) {
   return bitmap;
 }
 
-
-
 //function to greyscale colors
 function monoChrome(bitmap, err) {
   if(err) throw new Error('Failed to change image to black and white');
@@ -30,7 +28,6 @@ function monoChrome(bitmap, err) {
     currentColor[2] = currentColorAverage;
     currentColor[3] = 0;
   }
-
 }
 
 // function to RGB colors
@@ -40,8 +37,6 @@ function rgbColors(bitmap, err) {
     bitmap.colorArray[i] = Math.floor(Math.random() * 255);
   }
 }
-
-
 
 //export functions
 module.exports.invertColors = invertColors;

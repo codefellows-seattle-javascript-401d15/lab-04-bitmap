@@ -9,8 +9,8 @@ module.exports = exports = function() {
     console.log(`bitmap = ${bitmap}`);
     if(err) throw new Error('failed to read the bitmap');
     // transformFile.invertColors(bitmap);
-    // transformFile.monoChrome(bitmap);
-    transformFile.rgbColors(bitmap);
+    transformFile.monoChrome(bitmap);
+    // transformFile.rgbColors(bitmap);
     return exportFile('./assets/output.bmp', bitmap, function(err) {
       if(err) throw new Error('failed to transform the image');
     });
