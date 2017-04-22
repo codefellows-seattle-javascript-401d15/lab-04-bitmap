@@ -4,14 +4,14 @@ const fs = require('fs');
 const ImageArray = ['../data/bitmap.bmp', '../data/finger-print.bmp', '../data/house.bmp', '../data/non-palette-bitmap.bmp'];
 const BitData = require('../lib/construct.js');
 
-const bmpCreate = module.exports = function(filePath){
+const bmpCreate = module.exports = function(filePaths, callback){
   // for (var i = 0; i < ImageArray.length; i++ ) {
-  fs.readFile(ImageArray[0], (err, data) => {
-    if (err) return (err);
+  fs.readFile(filePaths, (err, data) => {
+    if (err) return callback (err);
     let newbit = new BitData(data);
-    console.dir(newbit.buf);
+    callback(null, newbit);
+    return(newbit);
   });
   // }
 };
-
-bmpCreate();
+//error with callback, data not being used in write
