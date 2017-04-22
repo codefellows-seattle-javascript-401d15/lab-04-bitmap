@@ -2,18 +2,19 @@
 
 const fs = require('fs');
 const bitmapModule = require(`${__dirname}/lib/readBitmap.js`);
+const writeBitmap = require(`${__dirname}/lib/writeBitmap.js`);
 
 bitmapModule.readBitmap(function(exports){
   let bufferColorArray = exports.colorArray;
 
   for(var i = 0; i < bufferColorArray.length; i += 4) {
-    bufferColorArray[i] += 25;
-    bufferColorArray[i+1] += 25;
-    bufferColorArray[i+2] += 25;
-    console.log(bufferColorArray[i]);
+    bufferColorArray[i] = 0;
+    bufferColorArray[i+1] = 0;
+    bufferColorArray[i+2] = 255;
   }
 
-  fs.writeFile(`${__dirname}/assets/bitmap-new.bmp`, bufferColorArray, function(err){
+  console.log(exports);
+  fs.writeFile(`${__dirname}/assets/house-new.bmp`, exports.buffer, function(err){
     if (err) throw err;
     console.log('Picture successfully made.');
   });
@@ -21,9 +22,7 @@ bitmapModule.readBitmap(function(exports){
   // console.log(exports, 'exports');
   // console.dir(exports.colorArray);
 
-  console.log(bufferColorArray);
   // console.log(bufferColorArray.toString('hex'));
-  const bufferString = Buffer.from(bufferColorArray);
   // console.log(bufferString);
   // console.dir(bufferColorArray.splice(0,4));
 });
