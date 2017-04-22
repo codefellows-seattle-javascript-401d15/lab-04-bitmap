@@ -10,7 +10,6 @@ const bmpCreate = module.exports = function(filePaths, callback){
     if (err) return callback (err);
     let newbit = new BitData(data);
     callback(null, newbit);
-    return(newbit);
   });
   // }
 };
