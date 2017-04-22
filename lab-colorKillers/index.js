@@ -1,5 +1,7 @@
 'use strict';
 
-const readFile = require();
-const writeFile = require('../lib/write-file.js');
-const transformFile = require();
+const writeFile = require('./lib/write-file.js');
+const BitData = require('./lib/bmp-reader.js');
+
+
+BitData('data/bitmap.bmp', writeFile('output/output.js', BitData));

@@ -1,7 +1,7 @@
 'use strict';
 
-const fs = require('fs');
-const data = fs.readFileSync(`../data/bitmap.bmp`);
+// const fs = require('fs');
+// const data = fs.readFileSync(`../data/bitmap.bmp`);
 // const bmp = {};
 // module.exports = exports = {};
 
