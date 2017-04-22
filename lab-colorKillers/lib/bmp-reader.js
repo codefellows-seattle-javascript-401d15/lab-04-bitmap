@@ -2,13 +2,16 @@
 
 const fs = require('fs');
 const ImageArray = ['../data/bitmap.bmp', '../data/finger-print.bmp', '../data/house.bmp', '../data/non-palette-bitmap.bmp'];
-// const ColorConstruct = fs.readFileSync(`../lib/construct.js`);
+const BitData = require('../lib/construct.js');
 
-module.exports = (filepaths, callback) => {
-  fs.readFile(filepaths, (err, data) => {
-    if (err) return callback (err);
-    let colormap = new (data);
-    // colormap.invert();
-    callback(null, colormap);
+const bmpCreate = module.exports = function(filePath){
+  // for (var i = 0; i < ImageArray.length; i++ ) {
+  fs.readFile(ImageArray[0], (err, data) => {
+    if (err) return (err);
+    let newbit = new BitData(data);
+    console.dir(newbit.buf);
   });
+  // }
 };
+
+bmpCreate();

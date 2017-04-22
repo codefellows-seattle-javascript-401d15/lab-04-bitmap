@@ -7,23 +7,25 @@ const data = fs.readFileSync(`../data/bitmap.bmp`);
 
 const BitMap = module.exports = function(data) {
   this.spec = data.toString('utf-8', 0, 2);
-  this.size = data.readUInt8LE(2);
-  this.width = data.readUInt8LE(18);
-  this.height = data.readUInt8LE(22);
-  this.offset = data.readUInt8LE(10);
+  this.size = data.readUInt32LE(2);
+  this.width = data.readUInt32LE(18);
+  this.height = data.readUInt32LE(22);
+  this.offset = data.readUInt32LE(10);
   this.colorArray = data.slice(54, this.offset);
-  this.buffer = data;
+  this.buf = data;
 };
-// console.log(BitMap(data));
 
+//
 BitMap.prototype.invert = function() {
   for (var i = 0; i < this.colorArray.length; i++) {
     this.colorArray[i] = 255 - this.colorArray[i];
-    this.colorArray[i+1] = 255 - this.colorArray[i];
-    this.colorArray[i+2] = 255 - this.colorArray[i];
+    // this.colorArray[i+1] = 255 - this.colorArray[i];
+    // this.colorArray[i+2] = 255 - this.colorArray[i];
   }
+  // console.dir(this.colorArray);
 };
-BitMap.prototype.invert(data);
+
+
 // console.dir(bmp.colorArray);
 
 // exports.invert();

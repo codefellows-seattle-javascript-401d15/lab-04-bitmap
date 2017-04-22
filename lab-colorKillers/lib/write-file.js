@@ -1,9 +1,11 @@
 'use strict';
 
 const fs = require('fs');
-const trans = require('../lib/construct.js');
+const BitData = require('../lib/bmp-reader.js');
 
 
-// let newColorArray = [];
-
-fs.writeFile(, 'hex');
+fs.writeFile('../output/newBMP.bmp', BitData.buf, function(err){
+  if(err) return (err);
+  console.log(exports.newbit);
+});
+console.log('saved');
