@@ -1,17 +1,17 @@
 'use strict';
 
-// const fs = require('fs');
-// const data = fs.readFileSync(`../data/bitmap.bmp`);
+const fs = require('fs');
+const data = fs.readFileSync(`../data/bitmap.bmp`);
 // const bmp = {};
 // module.exports = exports = {};
 
 const BitMap = module.exports = function(data) {
   this.spec = data.toString('utf-8', 0, 2);
-  this.size = data.readUInt32LE(2);
-  this.width = data.readUInt32LE(18);
-  this.height = data.readUInt32LE(22);
-  this.offset = data.readUInt32LE(10);
-  this.colorArray = data.slice(54, bmp.offset);
+  this.size = data.readUInt8LE(2);
+  this.width = data.readUInt8LE(18);
+  this.height = data.readUInt8LE(22);
+  this.offset = data.readUInt8LE(10);
+  this.colorArray = data.slice(54, this.offset);
   this.buffer = data;
 };
 // console.log(BitMap(data));

@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const trans = require('../lib/transform.js');
+const trans = require('../lib/construct.js');
 
 
 // let newColorArray = [];
