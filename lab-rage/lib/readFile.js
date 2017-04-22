@@ -7,4 +7,5 @@ module.exports = function (input, callback) {
     let imgData = new Bitmap(data);
     callback(null, imgData); // look up null functionality
   });
+  console.log('callback()');
 };
