@@ -27,14 +27,15 @@ function Bmp(data, name){
   this.colorArray = data.slice(54, this.offset);
   this.filePath = `${__dirname}/assets/${this.name}.bmp`;
   this.buff = data;
-  this.newColorArray = [];
+  //this.newColorArray = [];
   // bmp.colorTable = bitmap.slice(41, 44);
 }
 
 function inverter(imgObject){
-  for(let i = 0; i < imgObject.colorArray.length; i++) {
-    imgObject.newColorArray[i] = 255 - imgObject.colorArray[i];
-    imgObject.colorArray = imgObject.newColorArray;
+  for(var i = 0; i < imgObject.colorArray.length; i++) {
+    let newColors = 255 - imgObject.colorArray[i].toString(16);
+    imgObject.colorArray.writeUIntLE(newColors, i, 1);
+    //imgObject.newColorArray.push(newColors);
   }
 }
 
@@ -44,10 +45,11 @@ fs.readFile(bitmap, function(err, data){
 
   var newPic = new Bmp(data, 'newpicpls');
   // let newData = data.toString('ascii');
-
-
+  console.log(newPic);
   inverter(newPic);
   console.log(newPic);
+
+  console.log(newPic.newColorArray);
 
   fs.writeFile(newPic.filePath, newPic.buff, function(err){
     if(err) throw err;
