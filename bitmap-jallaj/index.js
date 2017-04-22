@@ -7,10 +7,16 @@ const writeBitmap = require(`${__dirname}/lib/writeBitmap.js`);
 bitmapModule.readBitmap(function(exports){
   let bufferColorArray = exports.colorArray;
 
-  for(var i = 0; i < bufferColorArray.length; i += 4) {
-    bufferColorArray[i] = 0;
-    bufferColorArray[i+1] = 0;
-    bufferColorArray[i+2] = 255;
+  // for(var i = 0; i < bufferColorArray.length; i += 4) {
+  //   bufferColorArray[i] = 255 - bufferColorArray[i];
+  //   bufferColorArray[i+1] = 255 - bufferColorArray[i+1];
+  //   bufferColorArray[i+2] = 255 - bufferColorArray[i+2];
+  // }
+  for(var ii = 0; ii < bufferColorArray.length; ii += 4){
+    let avg = (bufferColorArray[ii] + bufferColorArray[ii+1] + bufferColorArray[ii+2]) / 3;
+    bufferColorArray[ii] = avg;
+    bufferColorArray[ii+1] = avg;
+    bufferColorArray[ii+2] = avg;
   }
 
   console.log(exports);
