@@ -32,10 +32,19 @@ function Bmp(data, name){
 }
 
 function inverter(imgObject){
-  for(var i = 0; i < imgObject.colorArray.length; i++) {
+  for(let i = 0; i < imgObject.colorArray.length; i++) {
     let newColors = 255 - imgObject.colorArray[i].toString(16);
     imgObject.colorArray.writeUIntLE(newColors, i, 1);
     //imgObject.newColorArray.push(newColors);
+  }
+}
+
+function greyScale (imgObject) {
+  for (let i = 0; i < imgObject.colorArray.length; i+=4) {
+    let greyScale = imgObject.colorArray[i].toString(16);
+    imgObject.colorArray.writeUIntLE(greyScale, i, 1);
+    imgObject.colorArray.writeUIntLE(greyScale, i+1, 1);
+    imgObject.colorArray.writeUIntLE(greyScale, i+2, 1);
   }
 }
 
@@ -47,9 +56,10 @@ fs.readFile(bitmap, function(err, data){
   // let newData = data.toString('ascii');
   console.log(newPic);
   inverter(newPic);
+  greyScale(newPic);
   console.log(newPic);
 
-  console.log(newPic.newColorArray);
+  // console.log(newPic.newColorArray);
 
   fs.writeFile(newPic.filePath, newPic.buff, function(err){
     if(err) throw err;
