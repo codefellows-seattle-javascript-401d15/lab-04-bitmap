@@ -4,7 +4,7 @@
   "description": "make bitmaps work pls",
   "main": "index.js",
   "directories": {
-    "test": "tests"
+    "test": "test"
   },
   "scripts": {
     "test": "mocha"
