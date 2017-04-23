@@ -1,15 +1,15 @@
 'use strict';
 
-const fs = require('fs');
-const bitmap = fs.readFile(`./assets/finger-print.bmp`);
-const bmp = {};
+module.exports = exports = {};
 
-bmp.spec = bitmap.toString('utf-8', 0, 2);
-bmp.size = bitmap.readUInt32LE(2);
-bmp.width = bitmap.readUInt32LE(18);
-bmp.height = bitmap.readUInt32LE(22);
-bmp.offset = bitmap.readUInt32LE(10);
-bmp.colorArray = bitmap.slice(54, bmp.offset);
-
-console.log(bmp);
-console.log(bmp.spec);
+exports.Bmp = function(data, name){
+  this.name = name;
+  this.spec = data.toString('utf-8', 0, 2);
+  this.size = data.readUInt32LE(2);
+  this.width = data.readUInt32LE(18);
+  this.height = data.readUInt32LE(22);
+  this.offset = data.readUInt32LE(10);
+  this.colorArray = data.slice(54, this.offset);
+  this.filePath = `${__dirname}/../assets/${this.name}.bmp`;
+  this.buff = data;
+};
