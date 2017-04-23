@@ -9,31 +9,34 @@ const pics = ['data/bitmap.bmp', 'data/finger-print.bmp', 'data/house.bmp', 'dat
 for (var i = 0; i < pics.length; i++) {
   // for (var k = 0; k < newPics.length; k++) {
 
-    readFile(pics[i], (err, data) => {
-      if (err) throw err;
+  readFile(pics[i], (err, data) => {
+    if (err) throw err;
+    data.invert();
 
-      data.invert();
-
-      writeFile('./output/output_1', data, (err) => {
-        if(err) throw err;
-      });
+    let radNum = Math.floor(Math.random()*1000);
+    writeFile('./output/file'+ radNum +'.bmp', data, (err) => {
+      if(err) throw err;
     });
+  });
 
-    readFile(pics[i], (err, data) => {
-      if (err) throw err;
-      writeFile('./output/output_2', data, (err) => {
-        if(err) throw err;
-      });
+  readFile(pics[i], (err, data) => {
+    if (err) throw err;
+    let radNum = Math.floor(Math.random()*1000);
+    writeFile('./output/file'+ radNum +'.bmp', data, (err) => {
+      if(err) throw err;
     });
+  });
 
-    readFile(pics[i], (err, data) => {
-      if (err) throw err;
+  readFile(pics[i], (err, data) => {
+    if (err) throw err;
 
-      data.greyScale();
+    data.greyScale();
 
-      writeFile('./output/output_3', data, (err) => {
-        if(err) throw err;
-      });
+    let radNum = Math.floor(Math.random()*1000);
+
+    writeFile('./output/file'+ radNum +'.bmp', data, (err) => {
+      if(err) throw err;
     });
-    };
+  });
+}
 // }
