@@ -49,8 +49,8 @@ function greyScale (imgObject) {
 }
 
 function rgbColor (imgObject) {
-  for (let i = 0; i < imgObject.colorArray.length; i++) {
-    let rgbColor = 0.5 * imgObject.colorArray[i].toString(16);
+  for (let i = 0; i < imgObject.colorArray.length; i += 4) {
+    let rgbColor = imgObject.colorArray[i].toString(16);
     imgObject.colorArray.writeUIntLE(rgbColor, i, 1);
   }
 }
