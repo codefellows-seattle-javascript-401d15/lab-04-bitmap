@@ -48,6 +48,13 @@ function greyScale (imgObject) {
   }
 }
 
+function rgbColor (imgObject) {
+  for (let i = 0; i < imgObject.colorArray.length; i++) {
+    let rgbColor = 0.5 * imgObject.colorArray[i].toString(16);
+    imgObject.colorArray.writeUIntLE(rgbColor, i, 1);
+  }
+}
+
 fs.readFile(bitmap, function(err, data){
   if(err) throw err;
   console.log(data);
@@ -55,8 +62,9 @@ fs.readFile(bitmap, function(err, data){
   var newPic = new Bmp(data, 'newpicpls');
   // let newData = data.toString('ascii');
   console.log(newPic);
-  inverter(newPic);
-  greyScale(newPic);
+  // inverter(newPic);
+  // greyScale(newPic);
+  rgbColor(newPic);
   console.log(newPic);
 
   // console.log(newPic.newColorArray);
