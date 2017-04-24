@@ -11,10 +11,12 @@ for (var i = 0; i < pics.length; i++) {
 
   readFile(pics[i], (err, data) => {
     if (err) throw err;
+    console.dir(data);
     data.invert();
 
     let radNum = Math.floor(Math.random()*1000);
     writeFile('./output/file'+ radNum +'.bmp', data, (err) => {
+      console.dir(data);
       if(err) throw err;
     });
   });
