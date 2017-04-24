@@ -5,7 +5,7 @@ const fs = require('fs');
 module.exports = exports = {};
 
 exports.readFromFile = function(path, transform, callback) {
-    exports.newfile = path.split('.', 1);
+  exports.newfile = path.split('.', 1);
   fs.readFile(`${__dirname}/../data/${path}`, function(err, data) {
     if (err) throw err;
     console.log(data);
@@ -14,7 +14,7 @@ exports.readFromFile = function(path, transform, callback) {
 };
 
 exports.writeToFile = function(name, buffer, callback) {
-  fs.writeFile(`${__dirname}/../data/${exports.newfile}_${name}.bmp`, buffer, function(err) {
+  fs.writeFile(`${__dirname}/../data/${exports.newfile}-${name}.bmp`, buffer, function(err) {
     if (err) return callback(err);
     console.log('Bitmap file transformation complete!');
   });
