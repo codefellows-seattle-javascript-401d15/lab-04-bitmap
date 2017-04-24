@@ -29,6 +29,7 @@ function randomColors(bitmap, err) {
   for (var i = 0; i < bitmap.colorArray.length; i += 4) {
     bitmap.colorArray[i] = Math.floor(Math.random() * 255);
   }
+  console.log(`Random: ${this.colorArray}`);
   return bitmap;
 }
 
