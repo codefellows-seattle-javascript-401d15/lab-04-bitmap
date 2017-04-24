@@ -29,3 +29,29 @@ describe('invert colors function', function(){
     });
   });
 });
+
+describe('color change function', function(){
+  describe('change colors in colorArray', function(){
+    let testData = new constructFunc(testFile);
+    testData.changeColor();
+    it('should equal inverted number', function(){
+      expect(testData.colorArray[1]).to.equal(0);
+      expect(testData.colorArray[5]).to.equal(2);
+      expect(testData.colorArray[9]).to.equal(2);
+      expect(testData.colorArray[13]).to.equal(3);
+    });
+  });
+});
+
+describe('greyscale function', function() {
+  describe('change colors in colorArray to greyscale', function() {
+    let testData = new constructFunc(testFile);
+    testData.greyScale();
+    it('should equal averaged number', function() {
+      expect(testData.colorArray[4]).to.equal(39);
+      expect(testData.colorArray[5]).to.equal(39);
+      expect(testData.colorArray[6]).to.equal(39);
+      expect(testData.colorArray[7]).to.equal(0);
+    });
+  });
+});
