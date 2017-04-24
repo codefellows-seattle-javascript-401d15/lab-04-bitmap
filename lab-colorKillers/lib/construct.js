@@ -20,7 +20,7 @@ BitMap.prototype.invert = function() {
 
 BitMap.prototype.changeColor = function(){
   for (var i = 1; i < this.colorArray.length; i += 4) {
-    this.colorArray[i] = Math.round(this.colorArray[i]/2);
+    this.colorArray[i] = Math.round(this.colorArray[i]/200);
   }
 };
 
