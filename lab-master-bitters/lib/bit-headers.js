@@ -26,7 +26,7 @@ fs.readFile(`${__dirname}/../assets/bmp-files/bitmap.bmp`, function(err, data){
   // console.log(colors);
   console.log(dataOne.colorArray);
   // invert(dataOne);
-  greyScale(dataOne);
+  // greyScale(dataOne);
   scaleColor(dataOne, 1, 50);
   console.log(dataOne.colorArray);
   // console.log(inverted);
@@ -61,7 +61,9 @@ function greyScale(bmp){
 function scaleColor(bmp, colorNum, num){
   if (colorNum > 2) throw Error;
   for (let i = 0; i < 1024; i += 4){
-    bmp.colorArray[i+colorNum] = num + bmp.colorArray[i+colorNum];
+    if (num + bmp.colorArray[i+colorNum] < 256){
+      bmp.colorArray[i+colorNum] = num + bmp.colorArray[i+colorNum];
+    }
   }
 }
 
