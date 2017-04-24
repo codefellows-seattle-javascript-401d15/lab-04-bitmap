@@ -1,5 +1,0 @@
-function (error) {
-    if (error) throw error;
-
-    callback(exports);
-  }
