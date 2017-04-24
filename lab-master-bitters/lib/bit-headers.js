@@ -16,50 +16,53 @@ const bmp = function(data){
 
 // let bitmapArray = [];
 
-fs.readFile(`${__dirname}/../assets/bmp-files/finger-print.bmp`, function(err, data){
+fs.readFile(`${__dirname}/../assets/bmp-files/bitmap.bmp`, function(err, data){
   if(err) throw err;
   let picture = data;
   let dataOne = new bmp (picture);
 
-  let colors = dataOne.colorArray.slice(0,12);
+  // let colors = dataOne.colorArray.slice(0,12);
   // console.log(dataOne);
   // console.log(colors);
   console.log(dataOne.colorArray);
-  invert(dataOne);
+  // invert(dataOne);
+  greyScale(dataOne);
+  scaleColor(dataOne, 1, 50);
   console.log(dataOne.colorArray);
   // console.log(inverted);
 
-  fs.writeFile(`${__dirname}/../assets/bmp-files/newfinger.bmp`,picture,function(err){
+  fs.writeFile(`${__dirname}/../assets/bmp-files/newbitmap.bmp`,picture,function(err){
     if(err) throw err;
     data = dataOne;
     // console.log(data);
   });
 });
 
+
 function invert(bmp){
+  // console.log(bmp.colorArray);
   for (let i =0; i < 1024; i += 4){
-    bmp.colorArray[i] = 255 - bmp.colorArray[i];
+    for (let j =0; j < 3; j++){
+      bmp.colorArray[i+j] = 255 - bmp.colorArray[i+j];
+    }
   }
-  for (let i =1; i < 1024; i += 4){
-    bmp.colorArray[i] = 255 - bmp.colorArray[i];
-  }
-  for (let i =2; i < 1024; i += 4){
-    bmp.colorArray[i] = 255 - bmp.colorArray[i];
+  // console.log(bmp.colorArray);
+}
+
+function greyScale(bmp){
+  for (let i=0; i < 1024; i += 4){
+    let avg = (bmp.colorArray[i] + bmp.colorArray[i+1] + bmp.colorArray[i+2])/3;
+    bmp.colorArray[i] = avg;
+    bmp.colorArray[i+1] = avg;
+    bmp.colorArray[i+2] = avg;
   }
 }
 
-// function invert(bmp){
-//   console.log(bmp.colorArray);
-//   for (let i =0; i < bmp.colorArray.length; i += 4){
-//     for (let j =0; j < 3; j++){
-//       bmp.colorArray[i+j] = 255 - bmp.colorArray[i+j];
-//     }
-//   }
-//   console.log(bmp.colorArray);
-// }
-
-function greyScale(bmp){
-
+function scaleColor(bmp, colorNum, num){
+  if (colorNum > 2) throw Error;
+  for (let i = 0; i < 1024; i += 4){
+    bmp.colorArray[i+colorNum] = num + bmp.colorArray[i+colorNum];
+  }
 }
 
 // function monoChrome(bitmap, err) {
