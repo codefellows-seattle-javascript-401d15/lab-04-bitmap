@@ -16,8 +16,8 @@ module.exports = function() {
       let dataOne = new bitHeader.bmp (picture);
 
       // transformer.invert(dataOne);
-      // transformer.greyScale(dataOne);
-      transformer.scaleColor(dataOne, 1, 50);
+      transformer.greyScale(dataOne);
+      // transformer.scaleColor(dataOne, 1, 50);
 
       fs.writeFile(`${__dirname}/../assets/bmp-files/new${fileArray[i]}`,picture,function(err){
         if(err) throw err;
