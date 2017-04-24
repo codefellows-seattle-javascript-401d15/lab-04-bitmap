@@ -15,6 +15,7 @@ module.exports = function() {
       let picture = data;
       let dataOne = new bitHeader.bmp (picture);
 
+// these are the transforms, comment in the one(s) you want to use//
       // transformer.invert(dataOne);
       transformer.greyScale(dataOne);
       // transformer.scaleColor(dataOne, 1, 50);
