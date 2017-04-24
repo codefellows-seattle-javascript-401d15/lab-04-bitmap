@@ -57,3 +57,17 @@ exports.gray = function(shia) {
   }
   return newShia;
 };
+
+exports.scaleGreen = function(shia) {
+  let newShia = [];
+  for (var i = 0; i < shia.length; i++) {
+    let pixel = {
+      blue: shia[i].blue,
+      green: (.5 * shia[i].green),
+      red: shia[i].red,
+      alpha: shia[i].alpha,
+    };
+    newShia.push(pixel);
+  }
+  return newShia;
+};
