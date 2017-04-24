@@ -8,5 +8,4 @@ module.exports = exports = function(bmpImage) {
   this.width = bmpImage.readUInt32LE(18);
   this.height = bmpImage.readUInt32LE(22);
   this.colorArray = bmpImage.slice(54, this.offset);
-  console.log(this.colorArray);
 };
