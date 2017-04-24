@@ -8,16 +8,16 @@ module.exports = exports = {};
 
 exports.inversion = function(bitmap) {
   let bufferColorArray = bitmap.colorArray;
-
   for(var i = 0; i < bufferColorArray.length; i += 4) {
     bufferColorArray[i] = 255 - bufferColorArray[i];
     bufferColorArray[i+1] = 255 - bufferColorArray[i+1];
     bufferColorArray[i+2] = 255 - bufferColorArray[i+2];
+    // console.log(bufferColorArray, '@@@');
   }
 };
 
 exports.grayscale = function(bitmap) {
-  let bufferColorArray = exports.colorArray;
+  let bufferColorArray = bitmap.colorArray;
 
   for(var ii = 0; ii < bufferColorArray.length; ii += 4){
     let avg = (bufferColorArray[ii] + bufferColorArray[ii+1] + bufferColorArray[ii+2]) / 3;
@@ -28,7 +28,7 @@ exports.grayscale = function(bitmap) {
 };
 
 exports.scale = function(bitmap) {
-  let bufferColorArray = exports.colorArray;
+  let bufferColorArray = bitmap.colorArray;
   
   for(var index = 0; index < bufferColorArray.length; index += 4) {
     let double = bufferColorArray[index] * 2;

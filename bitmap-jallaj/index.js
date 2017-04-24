@@ -10,14 +10,28 @@ const writeBitmap = require(`${__dirname}/lib/writeBitmap.js`);
 bitmapModule.readBitmap(function(newBitmap) {
   transform.inversion(newBitmap);
   console.log(newBitmap);
-  writeBitmap();
+  writeBitmap(newBitmap, function() {
+  });
 });
 
+bitmapModule.readBitmap(function(newBitmap) {
+  transform.grayscale(newBitmap);
+  console.log(newBitmap);
+  writeBitmap(newBitmap, function() {
+  });
+});
+
+bitmapModule.readBitmap(function(newBitmap) {
+  transform.scale(newBitmap);
+  console.log(newBitmap);
+  writeBitmap(newBitmap, function() {
+  });
+});
 
 // writeBitmap(function(exports) {
 //   fs.writeFile(`${__dirname}/assets/house-new.bmp`, exports.buffer, function(err){
 //     if (err) throw err;
 //     console.log('Picture successfully made.');
 //   });
-// 
+// x
 // });
