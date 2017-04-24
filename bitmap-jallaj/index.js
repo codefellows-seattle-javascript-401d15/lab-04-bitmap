@@ -7,31 +7,29 @@ const transform = require(`${__dirname}/models/transform.js`);
 const writeBitmap = require(`${__dirname}/lib/writeBitmap.js`);
 
 
-bitmapModule.readBitmap(function(newBitmap) {
-  transform.inversion(newBitmap);
-  console.log(newBitmap);
-  writeBitmap(newBitmap, function() {
-  });
-});
-
-bitmapModule.readBitmap(function(newBitmap) {
-  transform.grayscale(newBitmap);
-  console.log(newBitmap);
-  writeBitmap(newBitmap, function() {
-  });
-});
-
-bitmapModule.readBitmap(function(newBitmap) {
-  transform.scale(newBitmap);
-  console.log(newBitmap);
-  writeBitmap(newBitmap, function() {
-  });
-});
-
-// writeBitmap(function(exports) {
-//   fs.writeFile(`${__dirname}/assets/house-new.bmp`, exports.buffer, function(err){
-//     if (err) throw err;
-//     console.log('Picture successfully made.');
-//   });
-// x
-// });
+(function(){
+  if(process.argv[2] === 'invert') {
+    bitmapModule.readBitmap(function(newBitmap) {
+      transform.inversion(newBitmap);
+      console.log(newBitmap);
+      writeBitmap(newBitmap, function() {
+      });
+    });
+  } else if(process.argv[2] === 'gray') {
+    bitmapModule.readBitmap(function(newBitmap) {
+      transform.grayscale(newBitmap);
+      console.log(newBitmap);
+      writeBitmap(newBitmap, function() {
+      });
+    });
+  } else if(process.argv[2] === 'scale') {
+    bitmapModule.readBitmap(function(newBitmap) {
+      transform.scale(newBitmap);
+      console.log(newBitmap);
+      writeBitmap(newBitmap, function() {
+      });
+    });
+  } else {
+    console.log('Please enter a valid command: invert, gray, or scale');
+  }
+}());
