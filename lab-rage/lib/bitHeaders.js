@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(bmpImage) {
+const BitHeaders = module.exports = function(bmpImage) {
   this.bmpImage = bmpImage;
   this.spec = bmpImage.toString('utf-8', 0, 2);
   this.size = bmpImage.readUInt32LE(2);
