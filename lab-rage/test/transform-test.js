@@ -12,7 +12,7 @@ describe('bitHeaders.js module tests', function(done) {
     this.BitHeaders = new BitHeaders(data);
     done();
   });
-  console.log('BitHeaders');
+  console.log('BitHeaders', BitHeaders);
 });
 
 describe('bitHeaders.js module tests', () => {
