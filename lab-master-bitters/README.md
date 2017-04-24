@@ -16,7 +16,9 @@ This application will open and read a bitmap image into a buffer, copy the data 
 This application requires Node.js. Install the application dependencies and run the command:
 
 ```
+node index.js or npm start
 
+Also comment in the transform you want to use in the readWrite.js
 ```
 
 ## License
