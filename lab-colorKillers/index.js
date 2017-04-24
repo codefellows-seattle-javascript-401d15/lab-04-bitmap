@@ -20,6 +20,9 @@ for (var i = 0; i < pics.length; i++) {
 
   readFile(pics[i], (err, data) => {
     if (err) throw err;
+
+    data.changeColor();
+    
     let radNum = Math.floor(Math.random()*1000);
     writeFile('./output/file'+ radNum +'.bmp', data, (err) => {
       if(err) throw err;

@@ -16,3 +16,12 @@ describe('constructor function', function(){
     } );
   });
 });
+
+describe('invert function', function(){
+  describe('produces inverted rgb color numbers', function(){
+    let testData = new constructFunc(testFile);
+    it('should create new BitMap object with inverted colors', function(){
+      expect().to.be.();
+    } );
+  });
+});
