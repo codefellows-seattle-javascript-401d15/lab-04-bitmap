@@ -18,14 +18,14 @@ exports.read = function(){
     exports.bmp.height = fingerData.readUInt32LE(22);
     exports.bmp.colors = fingerData.slice(54, exports.bmp.offset);
     exports.bmp.pixels = transform.convert(exports.bmp.colors);
-    exports.bmp.inverted = transform.invert(exports.bmp.pixels).toString('hex');
+    // exports.bmp.pixels = transform.invert(exports.bmp.pixels);
+    exports.bmp.pixels = transform.gray(exports.bmp.pixels);
     console.dir(exports.bmp);
-    // if (gray) transform.gray(exporst.bmp.colors, number);
     // if (scale) transform.scale(exports.bmp.colors, color, number);
-    fingerData.write(exports.bmp.inverted, 54, exports.bmp.offset);
+    exports.bmp.pixels = transform.revert(exports.bmp.pixels).toString('hex');
+    fingerData.write(exports.bmp.pixels, 54, exports.bmp.offset);
     fs.writeFile(`${__dirname}/../data/newbmp.bmp`, fingerData, err => {
       if (err) throw err;
     });
   });
 };
-// 46 or 54 for color starting point
