@@ -8,28 +8,51 @@ module.exports = function(path, transform, bitmap) {
   exports[transform](bitmap, fileHandler.writeToFile);
 };
 
-// Read the desired rgba value-set from the bitmap file and create buffer (FIRST)
 exports.invert = function(bitmap, callback){
-  // var testArray = [];
   console.log(bitmap);
   for (var i = 0; i < bitmap.colorArray.length; i++) {
     let colorValue = bitmap.colorArray[i].toString(16);
     colorValue = (255 - colorValue);
     bitmap.colorArray.writeUIntLE(colorValue, i, 1);
   }
-  // bitmap.paletteArray = testArray;
-  console.log('paletteArray of inverted values in hex: ', bitmap.colorArray);
-  // console.log( 'ARRRAAAAYYYY ', bitmap.paletteArray);
-  callback('new', bitmap.originalBuffer);
+  callback('inverted', bitmap.originalBuffer);
 };
 
-// Pass in the buffer, convert format and manipulate values (call a filter method) (SECOND)
+exports.grayScale = function(bitmap, callback){
+  let palette = bitmap.colorArray;
+  console.log(bitmap);
+  for (var i = 0; i < bitmap.colorArray.length; i+=4) {
+    let grayscale = (palette[i] + palette[i + 1] + palette[i + 2]) / 3;
+    bitmap.colorArray.writeUIntLE(grayscale, i, 1);
+    bitmap.colorArray.writeUIntLE(grayscale, i + 1, 1);
+    bitmap.colorArray.writeUIntLE(grayscale, i + 2, 1);
+  }
+  callback('grayscaled', bitmap.originalBuffer);
+};
 
-// Write the buffer containing the mutated data back into the bitmap file (FOURTH)
+exports.greenScale = function(bitmap, callback){
+  console.log(bitmap);
+  for (var i = 0; i < bitmap.colorArray.length; i+=4) {
+    let greenscale = 255;
+    bitmap.colorArray.writeUIntLE(greenscale, i + 1, 1);
+  }
+  callback('greenscaled', bitmap.originalBuffer);
+};
 
-// Call fileHandler.writeToFile() to confirm successful bitmap transform (FIFTH)
+exports.blueScale = function(bitmap, callback){
+  console.log(bitmap);
+  for (var i = 0; i < bitmap.colorArray.length; i+=4) {
+    let bluescale = 255;
+    bitmap.colorArray.writeUIntLE(bluescale, i, 1);
+  }
+  callback('bluescaled', bitmap.originalBuffer);
+};
 
-// FILTER METHODS // (ONE OF THESE: THIRD)
-// Invert colors
-// Gray-scale
-// change RGB individually
+exports.redScale = function(bitmap, callback){
+  console.log(bitmap);
+  for (var i = 0; i < bitmap.colorArray.length; i+=4) {
+    let redscale = 255;
+    bitmap.colorArray.writeUIntLE(redscale, i + 2, 1);
+  }
+  callback('redscaled', bitmap.originalBuffer);
+};
