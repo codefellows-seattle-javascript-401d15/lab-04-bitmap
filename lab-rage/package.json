@@ -1,0 +1,25 @@
+{
+  "name": "lab-rage",
+  "version": "1.0.0",
+  "description": "BMP transmogrification tool",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint ./lib"
+  },
+  "keywords": [
+    "BMP",
+    "transform",
+    "magic",
+    "rage"
+  ],
+  "author": "Team Rage",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
