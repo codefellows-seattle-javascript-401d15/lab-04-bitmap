@@ -8,7 +8,6 @@ exports.readFromFile = function(path, transform, callback) {
   exports.newfile = path.split('.', 1);
   fs.readFile(`${__dirname}/../data/${path}`, function(err, data) {
     if (err) throw err;
-    console.log(data);
     callback(data, path, transform);
   });
 };
